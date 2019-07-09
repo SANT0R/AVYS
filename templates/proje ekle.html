@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoşgeldiniz!</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+    #menu ul{
+      
+      float: left;
+    }
+     #menu li{
+       
+       list-style-type: none;
+       
+       
+       
+     }
+     
+     #menu a{
+		 
+       text-decoration: none;
+       color: whitesmoke;
+	   font-weight: 600;
+       display: block;
+       text-align: center;
+       transition: 1s;     
+	   font-family: calibri,arial,verdana;
+	   font-size: 20px;
+	   line-height: 50px;
+	   background-color: #887555;
+	   width: 180px;
+	   border-bottom: 3px solid orange;
+ 
+		   
+	}
+     
+      #menu span{
+       display: block;
+       margin-top:-60px;
+     }
+     
+     #menu a:hover{
+      
+		background-color: #5F3B06; 
+       	color: #887555;       
+       
+     }     
+      
+    body{
+      
+      margin-top: 90px;
+    }
+  
+    #menu1 li{
+      
+      list-style-type: none;
+      
+      
+      
+    }
+    
+    #menu1 a{
+        
+      text-decoration: none;
+      color: whitesmoke;
+      font-weight: 600;
+      display: block;
+      text-align: center;
+      transition: 1s;     
+      font-family: calibri,arial,verdana;
+      font-size: 20px;
+      line-height: 50px;
+      background-color: #005555;
+      width: 180px;
+      margin-right: 1px; 
+      float: left;
+          
+   }
+    
+     #menu1 span{
+      display: block;
+      margin-top:-60px;
+    }
+    
+    #menu1 a:hover{
+     
+       background-color: #5FD367; 
+          color: #005555;       
+      
+    }     
+     </style>
+</head>
+
+<body>
+    <div id="menu1">
+<center>
+    <h2>Hoşgeldin  {{ request.user.get_full_name }}</h2>
+<hr>
+<b>Son Giriş Tarihin : </b> {{ request.user.last_login }}
+<hr>
+
+        
+    </div>
+
+    <hr>
+    <div id="menu">
+            <ul>
+                <li><a href="/yayınekle">Bilimsel Yayın</a></li>
+                <li><a href="/projeekle">Bilimsel Proje</a></li>
+                <li><a href="/faliyetekle">Bilimsel Faliyet</a></li>
+                <li><a href="/etkinlikekle">Bilimsel Etkinlik</a></li>
+                <li><a href="/atıfekle">Atıf</a></li>
+                <li><a href="/patentekle">Patent</a></li>
+                <li><a href="/ödülekle">Ödül</a></li>
+                <li><a href="/cikis/"><font color="red">Çıkış Yap!</font></a></li>
+            </ul>
+    </div>
+    
+    <center><h1>----------------DUYURULAR----------------  </h1></center>
+    <hr><hr>
+  <!--
+
+    <div>TBTK: TÜBİTAK Projesi</div>    
+    <div>SANT: Sanayi Tezleri Araştırma Projesi</div>
+    <div>KBDP: Kalkınma Bakanlığı Destekli Proje</div>      
+    <div>BAPA: BAP Destekli Araştırma Projesi</div>
+    <div>UKDP: Diğer Ulusal Kurumlarca Desteklenen Projeler</div>      
+    <div>ABÇP: Avrupa Birliği Çerçeve Projesi</div>
+    <div>ABDP: Avrupa Birliği Destekli Diğer Projeler</div>      
+    <div>UABP: Uluslararası Kurumlarca Bilimsel Arştırma Projesi</div>
+    <div>DGRP: Diğer Projeler</div>
+
+  -->
+        <form id="menu1" action="/projeekle/" method="GET">
+        {% csrf_token %}  
+        <center><h1>Bilimsel proje ekle</h1></center>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="validationServer01">Tür:</label>
+                <select name="tür" id="tür">
+                    <option value="">---------</option>
+
+                    <option value="TÜBİTAK Projesi">TÜBİTAK Projesi</option>
+
+                    <option value="Sanayi Tezleri Araştırma Projesi">Sanayi Tezleri Araştırma Projesi</option>
+
+                    <option value="Kalkınma Bakanlığı Destekli Proje">Kalkınma Bakanlığı Destekli Proje</option>
+
+                    <option value="BAP Destekli Araştırma Projesi">BAP Destekli Araştırma Projesi</option>
+
+                    <option value="Diğer Ulusal Kurumlarca Desteklenen Projeler">Diğer Ulusal Kurumlarca Desteklenen Projeler</option>
+
+                    <option value="Avrupa Birliği Çerçeve Projesi">Avrupa Birliği Çerçeve Projesi</option>
+
+                    <option value="Avrupa Birliği Destekli Diğer Projeler">Avrupa Birliği Destekli Diğer Projeler</option>
+
+                    <option value="Uluslararası Kurumlarca Bilimsel Arştırma Projesi">Uluslararası Kurumlarca Bilimsel Arştırma Projesi</option>
+                    
+                    <option value="Diğer Projeler">Diğer Projeler</option>
+                </select>
+        </div>
+
+
+        
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="validationServerUsername">Proje tarihi</label>
+                <div class="input-group">
+                    <input type="date" class="form-control is-invalid" name="tarih" id="validationServerUsername" placeholder="Tarih" aria-describedby="inputGroupPrepend3" required>
+                <div class="invalid-feedback">
+                    Zorunlu alan.
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="col-md-5 mb-5">
+          <label >Dosya Ekle</label>
+          <input type="file" class="form-control is-valid" name="dosya" id="validationServer05" placeholder="Zip"  >
+        </div>
+        <div class="col-md-5 mb-3">
+            <button class="btn btn-primary" type="submit">Kaydet</button>
+        </div>
+
+    </div>
+    </form>
+
+
+
+
+
+</center>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
