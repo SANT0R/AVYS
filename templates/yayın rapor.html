@@ -121,18 +121,56 @@
                 </tr>
             </thead>
             <tbody>
-                
-                {% for i in index %}
+                {% for yıl in yıls %}
                     <tr>
-                        <th scope="row">{{yil}}</th>
-                            <td>{{ısımakale.i}}</td>
-                            <td>{{digermakale.i}}</td>
-                            <td>{{kitap.i}}</td>
-                            <td>{{kitaptabolum.i}}</td>
-                            <td>{{bildiri.i}}</td>
-                            <td>{{ansiklopedi.i}}</td>
-                            <td>{{diger.i}}</td>
-                            <td>{{toplam.i}}</td>
+                    <th scope="row">{{yıl}}</th>
+                    </tr>
+                {% endfor %}
+
+                {% for ısımakale in ısımakales %}
+                    <tr>
+                    <td>{{ısımakale}}</td>
+                    </tr>
+                {% endfor %}
+                {% for digermakale in digermakales %}
+                    <tr>
+                    <td>{{digermakale}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for kitap in kitaps %}
+                    <tr>
+                    <td>{{kitap}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for kitaptabolum in kitaptabolums %}
+                    <tr>
+                    <td>{{kitaptabolum}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for bildiri in bildiris %}
+                    <tr>
+                    <td>{{bildiri}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for ansiklopedi in ansiklopedis %}
+                    <tr>
+                    <td>{{ansiklopedi}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for diger in digers %}
+                    <tr>
+                    <td>{{diger}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for toplam in toplam %}
+                    <tr>
+                    <td>{{toplam}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

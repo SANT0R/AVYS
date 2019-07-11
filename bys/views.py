@@ -184,41 +184,47 @@ def yayınrapor(request):
         date=datetime.now()
         yil=2015
         
-        ısımakale=[date.year-yil]
-        digermakale=[date.year-yil]
-        kitap=[date.year-yil]
-        kitaptabolum=[date.year-yil]
-        bildiri=[date.year-yil]
-        ansiklopedi=[date.year-yil]
-        diger=[date.year-yil]
-        toplam=[date.year-yil]
+        ısımakales=[date.year-yil]
+        digermakales=[date.year-yil]
+        kitaps=[date.year-yil]
+        kitaptabolums=[date.year-yil]
+        bildiris=[date.year-yil]
+        ansiklopedis=[date.year-yil]
+        digers=[date.year-yil]
+        toplams=[date.year-yil]
+        yıls=[date.year-yil]
 
-        index=0
-        while (yil <= date.year):
-            ısımakale.append(len(yayınlar.filter(tür='ISI Makale')))
-            digermakale.append(len(yayınlar.filter(tür='Diğer Makale')))
-            kitap.append(len(yayınlar.filter(tür='Kitap')))
-            kitaptabolum.append(len(yayınlar.filter(tür='Kitapta Bölüm')))
-            bildiri.append(len(yayınlar.filter(tür='Bildiri')))
-            ansiklopedi.append(len(yayınlar.filter(tür='Ansiklopedi Konusu')))
-            diger.append(len(yayınlar.filter(tür='Diğer')))
-            toplam.append(len(yayınlar.filter()))
-            index+=1
+        
+        for yyn in yayınlar:
+            if yyn.get_year()==yil:
+                ısımakales.append(len(yayınlar.filterge(tür='ISI Makale')))
+                digermakales.append(len(yayınlar.filter(tür='Diğer Makale',get_year=yil)))
+                kitaps.append(len(yayınlar.filter(tür='Kitap',get_year=yil)))
+                kitaptabolums.append(len(yayınlar.filter(tür='Kitapta Bölüm',get_year=yil)))
+                bildiris.append(len(yayınlar.filter(tür='Bildiri',get_year=yil)))
+                ansiklopedis.append(len(yayınlar.filter(tür='Ansiklopedi Konusu',get_year=yil)))
+                digers.append(len(yayınlar.filter(tür='Diğer',get_year=yil)))
+                toplams.append(len(yayınlar.filter(get_year=yil)))
+                yıls.append(yil)
             yil+=1
+            if yil > date.year:
+                break
+            
 
         context = {
             "yayınlar":yayınlar,
             "yil":yil,
             "date":date,
-            "index":index,
-            "ısımakale":ısımakale,
-            "digermakale":digermakale,
-            "kitap":kitap,
-            "kitaptabolum":kitaptabolum,
-            "bildiri":bildiri,
-            "ansiklopedi":ansiklopedi,
-            "diger":diger,
-            "toplam":toplam,
+            #"index":index,
+            "yıls":yıls,
+            "ısımakales":ısımakales,
+            "digermakales":digermakales,
+            "kitaps":kitaps,
+            "kitaptabolums":kitaptabolums,
+            "bildiris":bildiris,
+            "ansiklopedis":ansiklopedis,
+            "digers":digers,
+            "toplams":toplams,
             
         }
 
