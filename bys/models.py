@@ -1,8 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import User
-from datetime import datetime
 import time
-from datetime import date
+from datetime import date, datetime
+
+from django.contrib.auth.models import User
+from django.db import models
 
 # Create your models here.
 
@@ -56,96 +56,93 @@ class NewUserModel(models.Model):
 
 class yayın(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
     
 
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 
 class proje(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
      
  
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 
 class faliyet(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
      
  
 
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 
 class etkinlik(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
     
  
 
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 class atıf(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
        
     
 
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 
 class patent(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",auto_now_add=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
         
     
  
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
 
 
 
 class ödül(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.DateTimeField(db_column='Tarih',verbose_name="Tarih",default=date.today)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
     tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
        
     
  
     def get_year(self):
-        trh=datetime.strptime(str(self.tarih),'%d.%m.%Y') 
+        trh=datetime.strptime(str(self.tarih),'%Y-%m-%d') 
         return datetime.strftime(trh,'%Y')
-
-
-
