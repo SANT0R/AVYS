@@ -215,7 +215,6 @@ def yayınrapor(request):
             "yayınlar":yayınlar,
             "yil":yil,
             "date":date,
-            #"index":index,
             "yıls":yıls,
             "ısımakales":ısımakales,
             "digermakales":digermakales,

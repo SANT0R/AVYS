@@ -56,9 +56,9 @@ class NewUserModel(models.Model):
 
 class yayın(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="ISI Makale",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
     
 
     def get_year(self):
@@ -69,9 +69,9 @@ class yayın(models.Model):
 
 class proje(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="TÜBİTAK Projesi",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
      
  
     def get_year(self):
@@ -82,9 +82,9 @@ class proje(models.Model):
 
 class faliyet(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="Baş Editör",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
      
  
 
@@ -96,9 +96,9 @@ class faliyet(models.Model):
 
 class etkinlik(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="Kongre Sempozyumu",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
     
  
 
@@ -109,9 +109,9 @@ class etkinlik(models.Model):
 
 class atıf(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerindeki Atıflar",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
        
     
 
@@ -123,9 +123,9 @@ class atıf(models.Model):
 
 class patent(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="Patent", blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
         
     
  
@@ -137,9 +137,9 @@ class patent(models.Model):
 
 class ödül(models.Model):
     akademisyen = models.ForeignKey(User,on_delete=models.CASCADE)
-    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default='yyyy-aa-gg',blank=True, null=True)
-    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",blank=True, null=True)
-    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",blank=True, null=True)
+    tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
+    tür = models.CharField(max_length=20,choices=Türler,db_column='TÜR',verbose_name="Tür",default="Proje ödülü",blank=False, null=True)
+    dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
        
     
  
