@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <title>Hoşgeldiniz!</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
+<style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
 </head>
 
 <body>
@@ -13,6 +30,7 @@
         <hr><hr>
         
 </div>
+
 
 <table>
     <tr>
@@ -99,13 +117,142 @@
             </div>
             </div>
         </td>
-        <td><a href="giris/">Akademisyen Girişi</a></td>
+        <td><a href="/giris/">Akademisyen Girişi</a></td>
     </tr>
 </table>
 
 
+{% if projeler %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">YIL</th>
+                <th scope="col">TÜBİTAK Projesi</th>
+                <th scope="col">Sanayi Tezleri Araştırma Projesi</th>
+                <th scope="col">Kalkınma Bakanlığı Destekli Proje</th>
+                <th scope="col">BAP Destekli Araştırma Projesi</th>
+                <th scope="col">Diğer Ulusal Kurumlarca Desteklenen Projeler</th>
+                <th scope="col">Avrupa Birliği Çerçeve Projesi</th>
+                <th scope="col">Avrupa Birliği Destekli Diğer Projesi</th>
+                <th scope="col">Uluslararası Kurumlarca Bilimsel Araştırma Projesi</th>
+                <th scope="col">Diğer</th>
+                <th scope="col">Toplam</th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <tr>
+            <td>
+                <table>
+                        {% for yıl in yıls %}
+                            <tr scope="row">
+                                <th >{{yıl}}</th>   
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for tubitak in tubitaks %}
+                            <tr scope="col">
+                                <td >{{tubitak}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for sanayi in sanayis %}
+                            <tr scope="row">
+                                <td >{{sanayi}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for kalkınma in kalkınmas %}
+                            <tr scope="row">
+                                <td >{{kalkınma}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for bap in baps %}
+                            <tr scope="row">
+                                <td >{{bap}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        {% for dgrulusal in digerulusals %}
+                            <tr scope="row">
+                                <td >{{dgrulusal}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for abc in abcs %}
+                            <tr scope="row">
+                                <td >{{abc}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for abd in abds %}
+                            <tr scope="row">
+                                <td >{{abd}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for uluslararası in uluslararasıs %}
+                            <tr scope="row">
+                                <td >{{uluslararası}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for diger in digers %}
+                            <tr scope="row">
+                                <td >{{diger}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for toplam in toplams %}
+                            <tr scope="row">
+                                <td >{{toplam}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+        </tr>
+        </tbody>
+        </table>
 
-</center>
+        {% else %}
+            <div class="alert alert-danger">Kayıt bulunamadı!</div>
+        {% endif %}
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <title>Hoşgeldiniz!</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
+<style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
 </head>
 
 <body>
@@ -105,75 +122,108 @@
 </table>
 
 
-        {% if yayınlar %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">YIL</th>
-                    <th scope="col">ISI Dergilerinde Makale</th>
-                    <th scope="col">Diğer Dergilerde Makale</th>
-                    <th scope="col">Kitap</th>
-                    <th scope="col">Kitapta Bölüm</th>
-                    <th scope="col">Bildiri</th>
-                    <th scope="col">Ansiklopedi Konusu</th>
-                    <th scope="col">Diğer</th>
-                    <th scope="col">Toplam</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for yıl in yıls %}
-                    <tr>
-                    <th scope="row">{{yıl}}</th>
-                    </tr>
-                {% endfor %}
-
-                {% for ısımakale in ısımakales %}
-                    <tr>
-                    <td>{{ısımakale}}</td>
-                    </tr>
-                {% endfor %}
-                {% for digermakale in digermakales %}
-                    <tr>
-                    <td>{{digermakale}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for kitap in kitaps %}
-                    <tr>
-                    <td>{{kitap}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for kitaptabolum in kitaptabolums %}
-                    <tr>
-                    <td>{{kitaptabolum}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for bildiri in bildiris %}
-                    <tr>
-                    <td>{{bildiri}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for ansiklopedi in ansiklopedis %}
-                    <tr>
-                    <td>{{ansiklopedi}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for diger in digers %}
-                    <tr>
-                    <td>{{diger}}</td>
-                    </tr>
-                {% endfor %}
-
-                {% for toplam in toplam %}
-                    <tr>
-                    <td>{{toplam}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+{% if yayınlar %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">YIL</th>
+                <th scope="col">ISI Dergilerinde Makale</th>
+                <th scope="col">Diğer Dergilerde Makale</th>
+                <th scope="col">Kitap</th>
+                <th scope="col">Kitapta Bölüm</th>
+                <th scope="col">Bildiri</th>
+                <th scope="col">Ansiklopedi Konusu</th>
+                <th scope="col">Diğer</th>
+                <th scope="col">Toplam</th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <tr>
+            <td>
+                <table>
+                        {% for yıl in yıls %}
+                            <tr scope="row">
+                                <th >{{yıl}}</th>   
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for ısımakale in ısımakales %}
+                            <tr scope="col">
+                                <td >{{ısımakale}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for digermakale in digermakales %}
+                            <tr scope="row">
+                                <td >{{digermakale}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for kitap in kitaps %}
+                            <tr scope="row">
+                                <td >{{kitap}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for kitaptabolum in kitaptabolums %}
+                            <tr scope="row">
+                                <td >{{kitaptabolum}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        {% for bildiri in bildiris %}
+                            <tr scope="row">
+                                <td >{{bildiri}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for ansiklopedi in ansiklopedis %}
+                            <tr scope="row">
+                                <td >{{ansiklopedi}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for diger in digers %}
+                            <tr scope="row">
+                                <td >{{diger}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for toplam in toplams %}
+                            <tr scope="row">
+                                <td >{{toplam}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+        </tr>
+        </tbody>
         </table>
 
         {% else %}
