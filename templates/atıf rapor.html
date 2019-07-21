@@ -122,7 +122,7 @@
 </table>
 
 
-{% if faliyetler %}
+{% if atıflar %}
     <table class="table">
         <thead>
             <tr>
@@ -171,6 +171,16 @@
                             </tr>
                         {% endfor %}
                 </table>
+            </td>
+            <td>
+                <table>
+                        {% for toplam in toplams %}
+                            <tr scope="row">
+                                <td >{{toplam}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
         </tr>
         </tbody>
         </table>

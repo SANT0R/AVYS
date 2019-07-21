@@ -122,18 +122,16 @@
 </table>
 
 
-{% if faliyetler %}
+{% if etkinlikler %}
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">YIL</th>
-                <th scope="col">Baş Editör</th>
-                <th scope="col">Editör</th>
-                <th scope="col">Yrd.Editör</th>
-                <th scope="col">Özel S.Editörü</th>
-                <th scope="col">Yayın K.Üyesi</th>
-                <th scope="col">Değerlendirme K.üyesi</th>
-                <th scope="col">Danışma K.Üyesi</th>
+                <th scope="col">Kongre Sempozyumu</th>
+                <th scope="col">Çalıştay</th>
+                <th scope="col">Sanatsal Faliyet</th>
+                <th scope="col">Sosyal Faliyet</th>
+                <th scope="col">Sportif Faliyet</th>
                 <th scope="col">Toplam</th>
             </tr>
         </thead>
@@ -151,7 +149,7 @@
             </td>
             <td>
                 <table>
-                        {% for kokongre in kongres %}
+                        {% for kongre in kongres %}
                             <tr scope="col">
                                 <td >{{kongre}}</td>
                             </tr>
@@ -191,6 +189,15 @@
                         {% for sportif in sportifs %}
                             <tr scope="row">
                                 <td >{{sportif}}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                        {% for toplam in toplams %}
+                            <tr scope="row">
+                                <td >{{toplam}}</td>
                             </tr>
                         {% endfor %}
                 </table>

@@ -815,7 +815,7 @@ def atıfrapor(request):
         ulusals.append(tulsl)
 
         context = {
-            "etkinlikler":etkinlikler,
+            "atıflar":atıflar,
             "yıls":yıls,
             "ısıdergis":ısıdergis,
             "dgrulsrrs":dgrulsrrs,
@@ -831,8 +831,67 @@ def patentrapor(request):
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
-        patentler = patent.objects.all()
-        return render(request,'patent rapor.html',{"patentler":patentler})
+        
+        patentler=patent.objects.all()
+        date=datetime.now()
+    
+
+        patents=[]
+        fydlmdls=[]
+        toplams=[]
+    
+        patnt=patentler.filter(tür='Patent')
+        fydlmdl=patentler.filter(tür='Faydalı Model')
+
+
+
+        tptnt=0
+        tfydmdl=0
+        
+        yıls=[]
+        yil=2015
+        while(True):
+            sum=0
+            toplam=0
+            for ptnt in patnt:
+                
+                if ptnt.get_year()==yil:
+                    sum+=1
+                    tptnt+=1
+                
+            toplam+=sum
+            patents.append(sum)
+            sum=0
+
+            for fydmdl in fydlmdl:
+                if fydmdl.get_year()==yil:
+                    sum+=1
+                    tfydmdl+=1
+
+            toplam+=sum
+            fydlmdls.append(sum)
+            sum=0
+
+            toplams.append(toplam)
+            yıls.append(yil)
+            yil+=1
+            if yil > date.year:
+                break
+            
+        yıls.append("Toplam")
+        patents.append(tptnt)
+        fydlmdls.append(tfydmdl)
+
+        context = {
+            "patentler":patentler,
+            "yıls":yıls,
+            "patents":patents,
+            "fydlmdls":fydlmdls,
+            "toplams":toplams,
+        }
+
+        return render(request,'patent rapor.html',context)
+
 
 
 
@@ -840,10 +899,229 @@ def ödülrapor(request):
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
-        ödüller = ödül.objects.all()
-        return render(request,'ödül rapor.html',{"ödüller":ödüller})
+        
+        ödüller=ödül.objects.all()
+        date=datetime.now()
+    
+
+        projes=[]
+        bilims=[]
+        burss=[]
+        digers=[]
+        toplams=[]
+    
+        proje=ödüller.filter(tür='Proje Ödülü')
+        bilim=ödüller.filter(tür='Bil. çalışma ödülü')
+        burs=ödüller.filter(tür='Burslar')
+        diger=ödüller.filter(tür='Diğer ödüller')
 
 
+
+        tprj=0
+        tblm=0
+        tbrs=0
+        tdgr=0
+        
+        yıls=[]
+        yil=2015
+        while(True):
+            sum=0
+            toplam=0
+            for prj in proje:
+                if prj.get_year()==yil:
+                    sum+=1
+                    tprj+=1
+                
+            toplam+=sum
+            projes.append(sum)
+            sum=0
+
+            for blm in bilim:
+                if blm.get_year()==yil:
+                    sum+=1
+                    tblm+=1
+
+            toplam+=sum
+            bilims.append(sum)
+            sum=0
+
+            sum=0
+            toplam=0
+            for brs in burs:
+                if brs.get_year()==yil:
+                    sum+=1
+                    tbrs+=1
+                
+            toplam+=sum
+            burss.append(sum)
+            sum=0
+
+            for dgr in diger:
+                if dgr.get_year()==yil:
+                    sum+=1
+                    tdgr+=1
+
+            toplam+=sum
+            digers.append(sum)
+            sum=0
+
+
+
+            toplams.append(toplam)
+            yıls.append(yil)
+            yil+=1
+            if yil > date.year:
+                break
+            
+        yıls.append("Toplam")
+        projes.append(tprj)
+        bilims.append(tblm)
+        burss.append(tbrs)
+        digers.append(tdgr)
+
+        context = {
+            "ödüller":ödüller,
+            "yıls":yıls,
+            "projes":projes,
+            "bilims":bilims,
+            "burss":burss,
+            "digers":digers,
+            "toplams":toplams,
+        }
+
+        return render(request,'ödül rapor.html',context)
+
+
+birims=[]
+birims.append('Eğitim Fakültesi')
+birims.append('Fen Edebiyat Fakültesi')
+birims.append('İktisadi ve İdari Birimler Fakültesi')
+birims.append('İslami İlimler Fakültesi')
+birims.append('Tıp Fakültesi')
+birims.append('Patnos Sultan Alparslan Doğa Bilimleri ve Mühendislik Fakültesi')
+birims.append('Sağlık Yüksek Okulu')
+birims.append('Beden Eğitimi ve Spor Yüksekokulu')
+birims.append('Eleşkirt Celal Oruç Hayvansal Üretim Yüksekokulu')
+birims.append('Yabancı Diller Yüksekokulu')
+birims.append('Turizm İşletmeciliği ve Otelcilik Yüksekokulu')
+birims.append('Patnos Sosyal Hizmetler Yüksekokulu')
+birims.append('Meslek Yüksekokulu')
+birims.append('Sağlık Hizmetleri Meslek Yüksekokulu')
+birims.append('Eleşkirt Meslek Yüksekokulu')
+birims.append('Doğubayazıt Ahmed-i Hani Meslek Yüksekokulu')
+birims.append('Sivil Havacılık Meslek Yüksekokulu')
+birims.append('Patnos Meslek Yüksekokulu')
+birims.append('Fen Bilimleri Enstitüsü')
+birims.append('Sosyal Bilimler Enstitüsü')
+birims.append('Sağlık Bilimleri Enstitüsü')
+
+def yayınrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        yayınlar=yayın.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "yayınlar":yayınlar,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for yyn in yayınlar:
+
+                    if yyn.get_year()==yil and yyn.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'yayın rapor2.html',context)
 
 
 
