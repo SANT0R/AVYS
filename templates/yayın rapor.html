@@ -44,7 +44,6 @@
                 <a class="dropdown-item" href="/Kurumun yıllara göre yayın dağılımı">Kurumun yıllara göre yayın dağılımı</a>
                 <a class="dropdown-item" href="/Birimlerin yıllara göre yayın dağılımı">Birimlerin yıllara göre yayın dağılımı</a>
                 <a class="dropdown-item" href="/Birimlerin türlere göre yayın dağılımı">Birimlerin türlere göre yayın dağılımı</a>
-                <a class="dropdown-item" href="/Alanlara göre yayın dağılımı">Alanlara göre yayın dağılımı</a>
             </div>
             </div>
         </td>
@@ -142,84 +141,84 @@
             <tr>
             <td>
                 <table>
-                        {% for yıl in yıls %}
-                            <tr scope="row">
-                                <th >{{yıl}}</th>   
-                            </tr>
-                        {% endfor %}
+                    {% for yıl in yıls %}
+                        <tr scope="row">
+                            <th >{{yıl}}</th>   
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for ısımakale in ısımakales %}
-                            <tr scope="col">
-                                <td >{{ısımakale}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for ısımakale in ısımakales %}
+                        <tr scope="col">
+                            <td >{{ısımakale}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for digermakale in digermakales %}
-                            <tr scope="row">
-                                <td >{{digermakale}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for digermakale in digermakales %}
+                        <tr scope="row">
+                            <td >{{digermakale}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for kitap in kitaps %}
-                            <tr scope="row">
-                                <td >{{kitap}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for kitap in kitaps %}
+                        <tr scope="row">
+                            <td >{{kitap}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for kitaptabolum in kitaptabolums %}
-                            <tr scope="row">
-                                <td >{{kitaptabolum}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for kitaptabolum in kitaptabolums %}
+                        <tr scope="row">
+                            <td >{{kitaptabolum}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
                     <thead>
-                        {% for bildiri in bildiris %}
-                            <tr scope="row">
-                                <td >{{bildiri}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for bildiri in bildiris %}
+                        <tr scope="row">
+                            <td >{{bildiri}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for ansiklopedi in ansiklopedis %}
-                            <tr scope="row">
-                                <td >{{ansiklopedi}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for ansiklopedi in ansiklopedis %}
+                        <tr scope="row">
+                            <td >{{ansiklopedi}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for diger in digers %}
-                            <tr scope="row">
-                                <td >{{diger}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for diger in digers %}
+                        <tr scope="row">
+                            <td >{{diger}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
             <td>
                 <table>
-                        {% for toplam in toplams %}
-                            <tr scope="row">
-                                <td >{{toplam}}</td>
-                            </tr>
-                        {% endfor %}
+                    {% for toplam in toplams %}
+                        <tr scope="row">
+                            <td >{{toplam}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </td>
         </tr>

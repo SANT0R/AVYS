@@ -43,10 +43,11 @@ class NewUserModel(models.Model):
     def __str__(self):
         return "Kişisel Bilgiler"
 
+
 class yayın(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="ISI Makale",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerinde Makale",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
     
 
@@ -60,7 +61,7 @@ class yayın(models.Model):
 class proje(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="TÜBİTAK Projesi",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="TÜBİTAK Projesi",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
      
  
@@ -74,7 +75,7 @@ class proje(models.Model):
 class faliyet(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="Baş Editör",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Baş Editör",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
      
  
@@ -89,7 +90,7 @@ class faliyet(models.Model):
 class etkinlik(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="Kongre Sempozyumu",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Kongre Sempozyumu",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
     
  
@@ -103,7 +104,7 @@ class etkinlik(models.Model):
 class atıf(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerindeki Atıflar",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerindeki Atıflar",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
        
     
@@ -118,7 +119,7 @@ class atıf(models.Model):
 class patent(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="Patent", blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Patent", blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
         
     
@@ -133,7 +134,7 @@ class patent(models.Model):
 class ödül(models.Model):
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
-    tür = models.CharField(max_length=20,db_column='TÜR',verbose_name="Tür",default="Proje ödülü",blank=False, null=True)
+    tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Proje ödülü",blank=False, null=True)
     dosya= models.FileField(upload_to='uploads/',verbose_name="dosyalar",default="Ek dosya",blank=False, null=True)
        
     

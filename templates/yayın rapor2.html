@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Hoşgeldiniz!</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
 </head>
 
 <body>
@@ -107,7 +123,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Birim\Yıl</th>
+                <th scope="col">Birim   \   Yıl</th>
                 {% for yil in yils %}
                         <th scope="col" >{{yil}}</th>   
                 {% endfor %}

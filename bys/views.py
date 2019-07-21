@@ -51,6 +51,17 @@ def AVYS(request):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 def yayınekle(request):
     
     if request.method=="POST":
@@ -171,6 +182,19 @@ def ödülekle(request):
         newödül.save()
         
         return render(request,'ödül ekle.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -992,6 +1016,21 @@ def ödülrapor(request):
         return render(request,'ödül rapor.html',context)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 birims=[]
 birims.append('Eğitim Fakültesi')
 birims.append('Fen Edebiyat Fakültesi')
@@ -1122,6 +1161,1171 @@ def yayınrapor2(request):
         
         yils.append("Toplam")
         return render(request,'yayın rapor2.html',context)
+
+
+
+
+
+
+def projerapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        projeler=proje.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "projeler":projeler,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for prj in projeler:
+
+                    if prj.get_year()==yil and prj.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'proje rapor2.html',context)
+
+
+
+
+
+
+def faliyetrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        faliyetler=faliyet.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "faliyetler":faliyetler,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for flyt in faliyetler:
+
+                    if flyt.get_year()==yil and flyt.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'faliyet rapor2.html',context)
+
+
+
+
+
+
+def etkinlikrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        etkinlikler=etkinlik.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "etkinlikler":etkinlikler,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for etknlk in etkinlikler:
+
+                    if etknlk.get_year()==yil and etknlk.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'etkinlik rapor2.html',context)
+
+
+
+
+
+
+def atıfrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        atıflar=atıf.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "atıflar":atıflar,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for atf in atıflar:
+
+                    if atf.get_year()==yil and atf.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'atıf rapor2.html',context)
+
+
+
+
+
+
+def patentrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        patentler=patent.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "patentler":patentler,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for ptnt in patentler:
+
+                    if ptnt.get_year()==yil and ptnt.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'patent rapor2.html',context)
+
+
+
+
+
+
+def ödülrapor2(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        ödüller=ödül.objects.all()
+        date=datetime.now()
+
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+        yils=[]
+        tyil=[]
+        tyil.append("Toplam")
+
+        context={
+            "ödüller":ödüller,
+            "yils":yils,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+            "tyil":tyil,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+        tyilindex=0
+        yil=2015
+        maxyil=date.year-yil
+
+        for birim in birims:
+            yil=2015
+            yilindex=1
+            while True:
+                if maxyil >= tyilindex:
+                    tyil.append(0)
+                
+                sum=0
+                toplam=0
+            
+                for ödl in ödüller:
+
+                    if ödl.get_year()==yil and ödl.akademisyen.birim==birim:
+                        sum+=1
+
+                tyil[yilindex]+=sum
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+                yilindex+=1
+                if maxyil >= tyilindex:
+                    yils.append(yil)
+                    tyilindex+=1
+                yil+=1
+                if yil > date.year:
+                    break 
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+
+
+        
+        yils.append("Toplam")
+        return render(request,'ödül rapor2.html',context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def yayınrapor3(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        yayınlar=yayın.objects.all()
+
+
+        turs=[]
+        turs.append("ISI Dergilerinde Makale")
+        turs.append("Diğer Dergilerde Makale")
+        turs.append("Kitap")
+        turs.append("Kitapta Bölüm")
+        turs.append("Bildiri")
+        turs.append("Ansiklopedi Konusu")
+        turs.append("Diğer")
+        ttur=[]
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+
+        context={
+            "yayınlar":yayınlar,
+            "turs":turs,
+            "ttur":ttur,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+
+        for birim in birims:
+            turindex=0
+            for tur in turs:
+                
+                sum=0
+                toplam=0
+            
+                for yyn in yayınlar:
+
+                    if yyn.tür==tur and yyn.akademisyen.birim==birim:
+                        sum+=1
+                        ttur[turindex]+=sum
+
+                turindex+=1
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+            
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+        
+        turs.append("Toplam")
+
+        
+        return render(request,'yayın rapor3.html',context)
+
+
+
+
+
+
+
+
+
+def projerapor3(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        projeler=proje.objects.all()
+
+
+        turs=[]
+        turs.append("TÜBİTAK Projesi")
+        turs.append("Sanayi Tezleri Araştırma Projesi")
+        turs.append("Kalkınma Bakanlığı Destekli Proje")
+        turs.append("BAP Destekli Araştırma Projesi")
+        turs.append("Diğer Ulusal Kurumlarca Desteklenen Projeler")
+        turs.append("Avrupa Birliği Çerçeve Projesi")
+        turs.append("Avrupa Birliği Destekli Diğer Projesi")
+        turs.append("Uluslararası Kurumlarca Bilimsel Araştırma Projesi")
+        turs.append("Diğer")
+        ttur=[]
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+
+        context={
+            "projeler":projeler,
+            "turs":turs,
+            "ttur":ttur,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+
+        for birim in birims:
+            turindex=0
+            for tur in turs:
+                
+                sum=0
+                toplam=0
+            
+                for prj in projeler:
+
+                    if prj.tür==tur and prj.akademisyen.birim==birim:
+                        sum+=1
+                        ttur[turindex]+=sum
+
+                turindex+=1
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+            
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+        
+        turs.append("Toplam")
+
+        
+        return render(request,'proje rapor3.html',context)
+
+
+
+
+
+
+
+
+
+def faliyetrapor3(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        faliyetler=faliyet.objects.all()
+
+
+        turs=[]
+        turs.append("Baş Editör")
+        turs.append("Editör")
+        turs.append("Yrd.Editör")
+        turs.append("Özel S.Editörü")
+        turs.append("Yayın K.Üyesi")
+        turs.append("Değerlendirme K.üyesi")
+        turs.append("Danışma K.Üyesi")
+        ttur=[]
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+        ttur.append(0)
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+
+        context={
+            "faliyetler":faliyetler,
+            "turs":turs,
+            "ttur":ttur,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+
+        for birim in birims:
+            turindex=0
+            for tur in turs:
+                
+                sum=0
+                toplam=0
+            
+                for flyt in faliyetler:
+
+                    if flyt.tür==tur and flyt.akademisyen.birim==birim:
+                        sum+=1
+                        ttur[turindex]+=sum
+
+                turindex+=1
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+            
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+        
+        turs.append("Toplam")
+
+        
+        return render(request,'faliyet rapor3.html',context)
+
+
+
+
+
+
+
+
+
+def patentrapor3(request):
+    if request.method=='POST':
+        return HttpResponseRedirect('/anasayfa.html')
+    else:
+        
+        patentler=patent.objects.all()
+
+
+        turs=[]
+        turs.append("Patent")
+        turs.append("Faydalı Model")
+        ttur=[]
+        ttur.append(0)
+        ttur.append(0)
+
+        birim1=[]
+        birim2=[]
+        birim3=[]
+        birim4=[]
+        birim5=[]
+        birim6=[]
+        birim7=[]
+        birim8=[]
+        birim9=[]
+        birim10=[]
+        birim11=[]
+        birim12=[]
+        birim13=[]
+        birim14=[]
+        birim15=[]
+        birim16=[]
+        birim17=[]
+        birim18=[]
+        birim19=[]
+        birim20=[]
+        birim21=[]
+
+        context={
+            "patentler":patentler,
+            "turs":turs,
+            "ttur":ttur,
+            "birim1":birim1,
+            "birim2":birim2,
+            "birim3":birim3,
+            "birim4":birim4,
+            "birim5":birim5,
+            "birim6":birim6,
+            "birim7":birim7,
+            "birim8":birim8,
+            "birim9":birim9,
+            "birim10":birim10,
+            "birim11":birim11,
+            "birim12":birim12,
+            "birim13":birim13,
+            "birim14":birim14,
+            "birim15":birim15,
+            "birim16":birim16,
+            "birim17":birim17,
+            "birim18":birim18,
+            "birim19":birim19,
+            "birim20":birim20,
+            "birim21":birim21,
+        }
+
+        
+        index=1
+        for birim in birims:
+            context["birim"+str(index)].append(birims[index-1])
+            index+=1
+
+
+        index=1
+
+        for birim in birims:
+            turindex=0
+            for tur in turs:
+                
+                sum=0
+                toplam=0
+            
+                for ptnt in patentler:
+
+                    if ptnt.tür==tur and ptnt.akademisyen.birim==birim:
+                        sum+=1
+                        ttur[turindex]+=sum
+
+                turindex+=1
+                context["birim"+str(index)].append(sum)
+                toplam+=sum
+                
+            
+            
+            context["birim"+str(index)].append(toplam)
+            index+=1
+        
+        turs.append("Toplam")
+
+        
+        return render(request,'patent rapor3.html',context)
+
+
+
+
+
+
 
 
 
