@@ -119,16 +119,16 @@
     
     <center><h1>----------------DUYURULAR----------------  </h1></center>
     <hr><hr>
-        <form id="menu1" action="/yayınekle/" method="GET">
+        <form id="menu1" action="/yayınekle/" method="POST" >
         {% csrf_token %}  
         <center><h1>Bilimsel yayın ekle</h1></center>
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationServer01">Tür:</label>
                 <select name="tür" id="tür">
-                    <option value="ISI Makale">ISI Makale</option>
+                    <option value="ISI Dergilerinde Makale">ISI Dergilerinde Makale</option>
 
-                    <option value="Diğer Makale">Diğer Makale</option>
+                    <option value="Diğer Dergilerde Makale">Diğer Dergilerde Makale</option>
 
                     <option value="Kitap">Kitap</option>
 
@@ -161,7 +161,7 @@
           <input type="file" class="form-control is-valid" name="dosya" id="validationServer05" placeholder="Zip"  >
         </div>
         <div class="col-md-5 mb-3">
-            <button class="btn btn-primary" type="submit">Kaydet</button>
+            <button class="btn btn-primary" type="submit" >Kaydet</button>
         </div>
 
     </div>

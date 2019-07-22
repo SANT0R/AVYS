@@ -63,18 +63,19 @@ def AVYS(request):
 
 
 def yayınekle(request):
-    
+
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
-        
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
-        newyayın=yayın(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
+        akademisyenler=NewUserModel.objects.all()
+        akademisyen=akademisyenler.filter(user=request.user)
+
+        newyayın=yayın(akademisyen=akademisyen,tür=tür,tarih=tarih,dosya=dosya)
         newyayın.save()
         
-        return render(request,'yayın ekle.html')
+    return render(request,'yayın ekle.html')
 
 
 
@@ -82,16 +83,14 @@ def yayınekle(request):
 def projeekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
-        
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newproje=proje(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newproje.save()
         
-        return render(request,'proje ekle.html')
+    return render(request,'proje ekle.html')
 
 
 
@@ -100,16 +99,14 @@ def projeekle(request):
 def faliyetekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
-        
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newfaliyet=faliyet(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newfaliyet.save()
         
-        return render(request,'faliyet ekle.html')
+    return render(request,'faliyet ekle.html')
 
 
 
@@ -118,16 +115,14 @@ def faliyetekle(request):
 def etkinlikekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
         
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newetkinlik=etkinlik(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newetkinlik.save()
         
-        return render(request,'etkinlik ekle.html')
+    return render(request,'etkinlik ekle.html')
 
 
 
@@ -136,16 +131,14 @@ def etkinlikekle(request):
 def atıfekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
         
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newatıf=atıf(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newatıf.save()
         
-        return render(request,'atıf ekle.html')
+    return render(request,'atıf ekle.html')
 
 
 
@@ -154,16 +147,14 @@ def atıfekle(request):
 def patentekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
         
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newpatent=patent(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newpatent.save()
         
-        return render(request,'patent ekle.html')
+    return render(request,'patent ekle.html')
 
 
 
@@ -172,16 +163,14 @@ def patentekle(request):
 def ödülekle(request):
     
     if request.method=="POST":
-        return HttpResponseRedirect('giris/')
-    else:
         
-        tarih=request.GET.get("tarih")
-        tür=request.GET.get("tür")
-        dosya=request.GET.get("dosya")
+        tarih=request.POST.get("tarih")
+        tür=request.POST.get("tür")
+        dosya=request.POST.get("dosya")
         newödül=ödül(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
         newödül.save()
         
-        return render(request,'ödül ekle.html')
+    return render(request,'ödül ekle.html')
 
 
 
@@ -219,8 +208,8 @@ def yayınrapor(request):
         toplams=[]
 
     
-        ısımakale=yayınlar.filter(tür='ISI Makale')
-        digermakale=yayınlar.filter(tür='Diğer Makale')
+        ısımakale=yayınlar.filter(tür='ISI Dergilerinde Makale')
+        digermakale=yayınlar.filter(tür='Diğer Dergilerde Makale')
         kitap=yayınlar.filter(tür='Kitap')
         kitaptabolum=yayınlar.filter(tür='Kitapta Bölüm')
         bildiri=yayınlar.filter(tür='Bildiri')
