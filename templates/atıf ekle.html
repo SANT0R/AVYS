@@ -95,7 +95,7 @@
 <body>
     <div id="menu1">
 <center>
-  <h2>Hoşgeldin  {{ request.user.get_full_name }}</h2>
+    <h2>Hoşgeldin  {{ request.user.get_full_name }}</h2>
 <hr>
 <b>Son Giriş Tarihin : </b> {{ request.user.last_login }}
 <hr>
@@ -120,8 +120,7 @@
     
     <center><h1>----------------DUYURULAR----------------  </h1></center>
     <hr><hr>
-
-        <form id="menu1" action="/atıfekle/" method="POST ">
+        <form id="menu1" action="/atıfekle/" method="POST" >
         {% csrf_token %}  
         <center><h1>Atıf ekle</h1></center>
         <div class="form-row">
@@ -136,13 +135,12 @@
                 </select>
         </div>
 
-
         
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationServerUsername">Atıf tarihi</label>
                 <div class="input-group">
-                    <input type="date" class="form-control is-invalid" name="tarih" value="2018-07-22" id="validationServerUsername" placeholder="Tarih" aria-describedby="inputGroupPrepend3" required>
+                    <input type="date" class="form-control is-invalid" value="2018-07-22" name="tarih" id="validationServerUsername" placeholder="Tarih" aria-describedby="inputGroupPrepend3" required>
                 <div class="invalid-feedback">
                     Zorunlu alan.
                 </div>
@@ -155,7 +153,7 @@
           <input type="file" class="form-control is-valid" name="dosya" id="validationServer05" placeholder="Zip"  >
         </div>
         <div class="col-md-5 mb-3">
-            <button class="btn btn-primary" type="submit">Kaydet</button>
+            <button class="btn btn-primary" type="submit" >Kaydet</button>
         </div>
 
     </div>
