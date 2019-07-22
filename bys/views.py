@@ -69,12 +69,12 @@ def yayınekle(request):
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        akademisyenler=NewUserModel.objects.all()
-        akademisyen=akademisyenler.filter(user=request.user)
+        akademisyen=NewUserModel.objects.filter(user=request.user)
 
-        newyayın=yayın(akademisyen=akademisyen,tür=tür,tarih=tarih,dosya=dosya)
+        newyayın=yayın(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)
         newyayın.save()
-        
+    
+   
     return render(request,'yayın ekle.html')
 
 
@@ -87,7 +87,9 @@ def projeekle(request):
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newproje=proje(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newproje=proje(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newproje.save()
         
     return render(request,'proje ekle.html')
@@ -103,7 +105,9 @@ def faliyetekle(request):
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newfaliyet=faliyet(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newfaliyet=faliyet(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newfaliyet.save()
         
     return render(request,'faliyet ekle.html')
@@ -115,11 +119,13 @@ def faliyetekle(request):
 def etkinlikekle(request):
     
     if request.method=="POST":
-        
+
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newetkinlik=etkinlik(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newetkinlik=etkinlik(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newetkinlik.save()
         
     return render(request,'etkinlik ekle.html')
@@ -131,11 +137,13 @@ def etkinlikekle(request):
 def atıfekle(request):
     
     if request.method=="POST":
-        
+
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newatıf=atıf(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newatıf=atıf(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newatıf.save()
         
     return render(request,'atıf ekle.html')
@@ -147,11 +155,13 @@ def atıfekle(request):
 def patentekle(request):
     
     if request.method=="POST":
-        
+
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newpatent=patent(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newpatent=patent(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newpatent.save()
         
     return render(request,'patent ekle.html')
@@ -163,11 +173,13 @@ def patentekle(request):
 def ödülekle(request):
     
     if request.method=="POST":
-        
+
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
         dosya=request.POST.get("dosya")
-        newödül=ödül(akademisyen=request.user,tür=tür,tarih=tarih,dosya=dosya)   
+        akademisyen=NewUserModel.objects.filter(user=request.user)
+
+        newödül=ödül(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
         newödül.save()
         
     return render(request,'ödül ekle.html')
@@ -1119,21 +1131,21 @@ def yayınrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for yyn in yayınlar:
 
                     if yyn.get_year()==yil and yyn.akademisyen.birim==birim:
                         sum+=1
 
+                toplam+=sum
                 tyil[yilindex]+=sum
                 context["birim"+str(index)].append(sum)
-                toplam+=sum
                 
                 yilindex+=1
                 if maxyil >= tyilindex:
@@ -1232,12 +1244,12 @@ def projerapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for prj in projeler:
 
@@ -1345,12 +1357,12 @@ def faliyetrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for flyt in faliyetler:
 
@@ -1458,12 +1470,12 @@ def etkinlikrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for etknlk in etkinlikler:
 
@@ -1571,12 +1583,12 @@ def atıfrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for atf in atıflar:
 
@@ -1684,12 +1696,12 @@ def patentrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for ptnt in patentler:
 
@@ -1797,12 +1809,12 @@ def ödülrapor2(request):
         for birim in birims:
             yil=2015
             yilindex=1
+            toplam=0
             while True:
                 if maxyil >= tyilindex:
                     tyil.append(0)
                 
                 sum=0
-                toplam=0
             
                 for ödl in ödüller:
 
@@ -1937,17 +1949,17 @@ def yayınrapor3(request):
 
         for birim in birims:
             turindex=0
+            toplam=0
             for tur in turs:
                 
                 sum=0
-                toplam=0
             
                 for yyn in yayınlar:
 
                     if yyn.tür==tur and yyn.akademisyen.birim==birim:
                         sum+=1
-                        ttur[turindex]+=sum
-
+                
+                ttur[turindex]+=sum
                 turindex+=1
                 context["birim"+str(index)].append(sum)
                 toplam+=sum

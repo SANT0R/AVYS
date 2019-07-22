@@ -34,14 +34,15 @@ Birimler = (
 
 class NewUserModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    tel = models.CharField(max_length=13,db_column='TEL',verbose_name="Tel",default='+905** *** ** **',blank=True, null=True)
+    tel = models.CharField(max_length=16,db_column='TEL',verbose_name="Tel",default='+905** *** ** **',blank=True, null=True)
     birim = models.CharField(max_length=150,choices=Birimler,db_column='BİRİM',verbose_name="Birim")
 
     class Meta:
         verbose_name = "Kullanıcı Ayarları"
- 
+    
     def __str__(self):
-        return "Kişisel Bilgiler"
+        return self.user.username
+    
 
 
 class yayın(models.Model):
