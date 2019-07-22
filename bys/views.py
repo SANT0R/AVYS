@@ -8,6 +8,7 @@ from bys.models import atıf
 from bys.models import patent
 from bys.models import ödül
 from datetime import datetime
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import * # formlar
 from django.contrib.auth.decorators import * #görünüm gizlenme
@@ -68,7 +69,8 @@ def yayınekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
+
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newyayın=yayın(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)
@@ -86,7 +88,7 @@ def projeekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newproje=proje(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
@@ -104,7 +106,7 @@ def faliyetekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newfaliyet=faliyet(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
@@ -122,7 +124,7 @@ def etkinlikekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newetkinlik=etkinlik(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
@@ -140,7 +142,7 @@ def atıfekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newatıf=atıf(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
@@ -158,7 +160,7 @@ def patentekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newpatent=patent(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
@@ -176,7 +178,7 @@ def ödülekle(request):
 
         tarih=request.POST.get("tarih")
         tür=request.POST.get("tür")
-        dosya=request.POST.get("dosya")
+        dosya=request.FILES['dosya']
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newödül=ödül(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
