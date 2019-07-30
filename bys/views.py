@@ -25,17 +25,17 @@ def anasayfa(request):
 
 
 def giris(request):
-    #Giriş yapan bidaha giremesin
-    oku = request.user.id
+
+    oku = request.user.id    #Giriş yapan bidaha giremesin
     if(oku):
         return HttpResponseRedirect('/AVYS/')
     
     form = AuthenticationForm
-    if(request.method=='POST'):
+    if(request.method=='POST'):     #giriş yapanın bilgileri alındı
         username = request.POST['username']
         password = request.POST['password']
         giris_kontrol = AuthenticationForm(data=request.POST)
-        if(giris_kontrol.is_valid()):
+        if(giris_kontrol.is_valid()):   #giriş kontrolü yapıldı
             kullanici = authenticate(username=username,password=password)
             login(request,kullanici)
             return HttpResponseRedirect('/AVYS/')
@@ -44,7 +44,7 @@ def giris(request):
 
 
 def AVYS(request):
-    oku = request.user.id
+    oku = request.user.id       #giriş kontrolü
     if(not oku):
         return HttpResponseRedirect('AVYS/')
     return render(request,'AVYS.html',locals())
@@ -63,7 +63,7 @@ def AVYS(request):
 
 
 
-def yayınekle(request):
+def yayınekle(request):     #Bilimsel yayın ekleme
 
     if request.method=="POST":
 
@@ -74,7 +74,7 @@ def yayınekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newyayın=yayın(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)
-        newyayın.save()
+        newyayın.save()     #veri tabanına kayıt
     
    
     return render(request,'yayın ekle.html')
@@ -82,7 +82,7 @@ def yayınekle(request):
 
 
 
-def projeekle(request):
+def projeekle(request):     #Bilimsel Proje ekleme
     
     if request.method=="POST":
 
@@ -92,7 +92,7 @@ def projeekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newproje=proje(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newproje.save()
+        newproje.save()     #veri tabanına kayıt
         
     return render(request,'proje ekle.html')
 
@@ -100,7 +100,7 @@ def projeekle(request):
 
 
 
-def faliyetekle(request):
+def faliyetekle(request):     #Bilimsel faliyet ekleme
     
     if request.method=="POST":
 
@@ -110,7 +110,7 @@ def faliyetekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newfaliyet=faliyet(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newfaliyet.save()
+        newfaliyet.save()     #veri tabanına kayıt
         
     return render(request,'faliyet ekle.html')
 
@@ -118,7 +118,7 @@ def faliyetekle(request):
 
 
 
-def etkinlikekle(request):
+def etkinlikekle(request):     #Bilimsel etkinlik ekleme
     
     if request.method=="POST":
 
@@ -128,7 +128,7 @@ def etkinlikekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newetkinlik=etkinlik(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newetkinlik.save()
+        newetkinlik.save()     #veri tabanına kayıt
         
     return render(request,'etkinlik ekle.html')
 
@@ -136,7 +136,7 @@ def etkinlikekle(request):
 
 
 
-def atıfekle(request):
+def atıfekle(request):     #Atıf ekleme
     
     if request.method=="POST":
 
@@ -146,7 +146,7 @@ def atıfekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newatıf=atıf(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newatıf.save()
+        newatıf.save()     #veri tabanına kayıt
         
     return render(request,'atıf ekle.html')
 
@@ -154,7 +154,7 @@ def atıfekle(request):
 
 
 
-def patentekle(request):
+def patentekle(request):     #Patent ekleme
     
     if request.method=="POST":
 
@@ -164,7 +164,7 @@ def patentekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newpatent=patent(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newpatent.save()
+        newpatent.save()     #veri tabanına kayıt
         
     return render(request,'patent ekle.html')
 
@@ -172,7 +172,7 @@ def patentekle(request):
 
 
 
-def ödülekle(request):
+def ödülekle(request):     #Ödül ekleme
     
     if request.method=="POST":
 
@@ -182,7 +182,7 @@ def ödülekle(request):
         akademisyen=NewUserModel.objects.filter(user=request.user)
 
         newödül=ödül(akademisyen=akademisyen[0],tür=tür,tarih=tarih,dosya=dosya)   
-        newödül.save()
+        newödül.save()     #veri tabanına kayıt
         
     return render(request,'ödül ekle.html')
 
@@ -202,13 +202,13 @@ def ödülekle(request):
 
 
 
-def yayınrapor(request):
+def yayınrapor(request):    #Bilimsel yayınların türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
         
-        yayınlar=yayın.objects.all()
-        date=datetime.now()
+        yayınlar=yayın.objects.all()    #veri tabanı çekildi
+        date=datetime.now()             #bugünün tarihi alındı
     
 
         ısımakales=[]
@@ -221,7 +221,8 @@ def yayınrapor(request):
         yıls=[]
         toplams=[]
 
-    
+        #Çekilen veritabanından türlere göre filtrelemeler yapıldı
+
         ısımakale=yayınlar.filter(tür='ISI Dergilerinde Makale')
         digermakale=yayınlar.filter(tür='Diğer Dergilerde Makale')
         kitap=yayınlar.filter(tür='Kitap')
@@ -240,12 +241,12 @@ def yayınrapor(request):
         tanskpd=0
         tdgr=0
         yil=2015
-        while(True):
+        while(True):    #Yıl kontrolü
             sum=0
             toplam=0
             for ısı in ısımakale:
                 
-                if ısı.get_year()==yil:
+                if ısı.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tısı+=1
                 
@@ -253,7 +254,7 @@ def yayınrapor(request):
             ısımakales.append(sum)
             sum=0
 
-            for dgrm in digermakale:
+            for dgrm in digermakale:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if dgrm.get_year()==yil:
                     sum+=1
                     tdgrm+=1
@@ -262,7 +263,7 @@ def yayınrapor(request):
             digermakales.append(sum)
             sum=0
 
-            for ktp in kitap:
+            for ktp in kitap:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if ktp.get_year()==yil:
                     sum+=1
                     tktp+=1
@@ -272,7 +273,7 @@ def yayınrapor(request):
             kitaps.append(sum)
             sum=0
 
-            for ktpblm in kitaptabolum:
+            for ktpblm in kitaptabolum:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if ktpblm.get_year()==yil:
                     sum+=1
                     tktpblm+=1
@@ -281,7 +282,7 @@ def yayınrapor(request):
             toplam+=sum
             kitaptabolums.append(sum)
             sum=0
-            for bldr in bildiri:
+            for bldr in bildiri:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if bldr.get_year()==yil:
                     sum+=1
 
@@ -290,7 +291,7 @@ def yayınrapor(request):
             bildiris.append(sum)
             sum=0
 
-            for ansk in ansiklopedi:
+            for ansk in ansiklopedi:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if ansk.get_year()==yil:
                     sum+=1
                     tanskpd+=1
@@ -300,7 +301,7 @@ def yayınrapor(request):
             ansiklopedis.append(sum)
             sum=0
 
-            for dgr in diger:
+            for dgr in diger:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                 if dgr.get_year()==yil:
                     sum+=1
                     tdgr+=1
@@ -309,13 +310,15 @@ def yayınrapor(request):
             toplam+=sum
             digers.append(sum)
 
-            toplams.append(toplam)
+            toplams.append(toplam)      #O yıldaki toplam veri sayısı
             yıls.append(yil)
             yil+=1
             if yil > date.year:
                 break
             
         yıls.append("Toplam")
+
+        #Türlerin toplam değerleri
         ısımakales.append(tısı)
         digermakales.append(tdgrm)
         kitaps.append(tktp)
@@ -324,6 +327,8 @@ def yayınrapor(request):
         ansiklopedis.append(tanskpd)
         digers.append(tdgr)
 
+
+        #Html template gönderilicek sözlük yapısı 
         context = {
             "yayınlar":yayınlar,
             "yıls":yıls,
@@ -341,13 +346,13 @@ def yayınrapor(request):
 
 
 
-def projerapor(request):
+def projerapor(request):    #Bilimsel projelerin türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
         
-        projeler=proje.objects.all()
-        date=datetime.now()
+        projeler=proje.objects.all()    #veri tabanı çekildi
+        date=datetime.now()             #Bugünün tarihi alındı
     
 
         tubitaks=[]
@@ -363,6 +368,7 @@ def projerapor(request):
         toplams=[]
 
     
+        #veri tabanından alınan veriler türlerine göre ayrıldı
         tubitak=projeler.filter(tür='TÜBİTAK Projesi')
         sanayi=projeler.filter(tür='Sanayi Tezleri Araştırma Projesi')
         kalkınma=projeler.filter(tür='Kalkınma Bakanlığı Destekli Proje')
@@ -385,12 +391,12 @@ def projerapor(request):
         tulsrr=0
         tdgr=0
         yil=2015
-        while(True):
+        while(True):    #Yıl kontrolü
             sum=0
             toplam=0
             for tubi in tubitak:
                 
-                if tubi.get_year()==yil:
+                if tubi.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     ttubi+=1
                 
@@ -399,7 +405,7 @@ def projerapor(request):
             sum=0
 
             for sny in sanayi:
-                if sny.get_year()==yil:
+                if sny.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tsny+=1
 
@@ -408,7 +414,7 @@ def projerapor(request):
             sum=0
 
             for klknm in kalkınma:
-                if klknm.get_year()==yil:
+                if klknm.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tklknm+=1
 
@@ -418,7 +424,7 @@ def projerapor(request):
             sum=0
 
             for bp in bap:
-                if bp.get_year()==yil:
+                if bp.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tbp+=1
 
@@ -428,7 +434,7 @@ def projerapor(request):
             sum=0
 
             for dgrulsl in digerulusal:
-                if dgrulsl.get_year()==yil:
+                if dgrulsl.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tdgrulsl+=1
 
@@ -438,7 +444,7 @@ def projerapor(request):
             sum=0
 
             for ac in abc:
-                if ac.get_year()==yil:
+                if ac.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tac+=1
 
@@ -448,7 +454,7 @@ def projerapor(request):
             sum=0
 
             for ad in abd:
-                if ad.get_year()==yil:
+                if ad.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tad+=1
 
@@ -458,7 +464,7 @@ def projerapor(request):
             sum=0
 
             for ulsrr in uluslararası:
-                if ulsrr.get_year()==yil:
+                if ulsrr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tulsrr+=1
 
@@ -468,7 +474,7 @@ def projerapor(request):
             sum=0
 
             for dgr in diger:
-                if dgr.get_year()==yil:
+                if dgr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tdgr+=1
             
@@ -477,7 +483,7 @@ def projerapor(request):
             digers.append(sum)
 
 
-            toplams.append(toplam)
+            toplams.append(toplam)      #O yıldaki toplam veri sayısı eklendi
             yıls.append(yil)
             yil+=1
             if yil > date.year:
@@ -485,6 +491,8 @@ def projerapor(request):
             
 
         yıls.append("Toplam")
+
+        #Türlerin toplam sayısı eklendi
         tubitaks.append(ttubi)
         sanayis.append(tsny)
         kalkınmas.append(tklknm)
@@ -495,7 +503,7 @@ def projerapor(request):
         uluslararasıs.append(tulsrr)
         digers.append(tdgr)
 
-        context = {
+        context = {     #Html template gönderilecek sözlük yapısı
             "projeler":projeler,
             "yıls":yıls,
             "tubitaks":tubitaks,
@@ -514,13 +522,13 @@ def projerapor(request):
 
 
 
-def faliyetrapor(request):
+def faliyetrapor(request):    #Bilimsel faliyetlerin türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
         
-        faliyetler=faliyet.objects.all()
-        date=datetime.now()
+        faliyetler=faliyet.objects.all()    #Veri tabanından veriler çekildi
+        date=datetime.now()                 #Bugünün tarihi alındı
     
 
         baseditors=[]
@@ -531,7 +539,8 @@ def faliyetrapor(request):
         degerlendirmekuyesis=[]
         danısmakuyesis=[]
         toplams=[]
-    
+
+        #Veri tabanından alınan veriler türlere göre ayrıldı
         baseditor=faliyetler.filter(tür='Baş Editör')
         editor=faliyetler.filter(tür='Editör')
         yrdeditor=faliyetler.filter(tür='Yrd.Editör')
@@ -552,12 +561,12 @@ def faliyetrapor(request):
         
         yıls=[]
         yil=2015
-        while(True):
+        while(True):    #Yıl kontrolü
             sum=0
             toplam=0
             for bsedtr in baseditor:
                 
-                if bsedtr.get_year()==yil:
+                if bsedtr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tbsedtr+=1
                 
@@ -566,7 +575,7 @@ def faliyetrapor(request):
             sum=0
 
             for edtr in editor:
-                if edtr.get_year()==yil:
+                if edtr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tedtr+=1
 
@@ -575,7 +584,7 @@ def faliyetrapor(request):
             sum=0
 
             for yedtr in yrdeditor:
-                if yedtr.get_year()==yil:
+                if yedtr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tyedtr+=1
 
@@ -585,7 +594,7 @@ def faliyetrapor(request):
             sum=0
 
             for oedtr in ozelseditor:
-                if oedtr.get_year()==yil:
+                if oedtr.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     toedtr+=1
 
@@ -595,7 +604,7 @@ def faliyetrapor(request):
             sum=0
 
             for yynu in yayınkuyesi:
-                if yynu.get_year()==yil:
+                if yynu.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tyynu+=1
 
@@ -605,7 +614,7 @@ def faliyetrapor(request):
             sum=0
 
             for dgru in degerlendirmekuyesi:
-                if dgru.get_year()==yil:
+                if dgru.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tdgru+=1
 
@@ -615,7 +624,7 @@ def faliyetrapor(request):
             sum=0
 
             for dnsu in danısmakuyesi:
-                if dnsu.get_year()==yil:
+                if dnsu.get_year()==yil:     #Veritabanındaki yılı kontrol yılına eşit olan tür için sayım yapıldı
                     sum+=1
                     tdnsu+=1
 
@@ -624,13 +633,15 @@ def faliyetrapor(request):
             danısmakuyesis.append(sum)
 
 
-            toplams.append(toplam)
+            toplams.append(toplam)      #O yılın toplam tür sayısı
             yıls.append(yil)
             yil+=1
             if yil > date.year:
                 break
             
         yıls.append("Toplam")
+
+        #Türlerin toplam verileri eklendi
         baseditors.append(tbsedtr)
         editors.append(tedtr)
         yrdeditors.append(tyedtr)
@@ -639,6 +650,7 @@ def faliyetrapor(request):
         degerlendirmekuyesis.append(tdgru)
         danısmakuyesis.append(tdnsu)
 
+        #Html template için sözlük yapısı
         context = {
             "faliyetler":faliyetler,
             "yıls":yıls,
@@ -656,7 +668,7 @@ def faliyetrapor(request):
 
 
 
-def etkinlikrapor(request):
+def etkinlikrapor(request):    #Bilimsel etkinliklerin türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
@@ -770,7 +782,7 @@ def etkinlikrapor(request):
 
 
 
-def atıfrapor(request):
+def atıfrapor(request):    #Atıfların türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
@@ -854,7 +866,7 @@ def atıfrapor(request):
 
 
 
-def patentrapor(request):
+def patentrapor(request):    #Patentlerin türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:
@@ -922,7 +934,7 @@ def patentrapor(request):
 
 
 
-def ödülrapor(request):
+def ödülrapor(request):    #Ödüllerin türlere göre dağılım raporu
     if request.method=='POST':
         return HttpResponseRedirect('/anasayfa.html')
     else:

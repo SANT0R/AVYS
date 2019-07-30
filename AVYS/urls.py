@@ -56,6 +56,6 @@ urlpatterns = [
     path('cikis/', views.cikis_yap),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG:      #sadece geliştirici modunda eklenicek urller
     urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

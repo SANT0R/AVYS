@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bys',
+    'bys',      #uygulama eklendi
 ]
 
 MIDDLEWARE = [
@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
+STATICFILES_DIRS = [        #yüklenicek dosyaların dosya yolu verildi
     os.path.join(BASE_DIR, 'uploads')
 ]
 

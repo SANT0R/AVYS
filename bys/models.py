@@ -32,7 +32,7 @@ Birimler = (
     ('Sağlık Bilimleri Enstitüsü', 'Sağlık Bilimleri Enstitüsü'),
 )
 
-class NewUserModel(models.Model):
+class NewUserModel(models.Model):   #kullnıcılara ek özellikler tanımlandı
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tel = models.CharField(max_length=16,db_column='TEL',verbose_name="Tel",default='+905** *** ** **',blank=True, null=True)
     birim = models.CharField(max_length=150,choices=Birimler,db_column='BİRİM',verbose_name="Birim")
@@ -45,7 +45,7 @@ class NewUserModel(models.Model):
     
 
 
-class yayın(models.Model):
+class yayın(models.Model):  #yayınlar için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerinde Makale",blank=False, null=True)
@@ -59,7 +59,7 @@ class yayın(models.Model):
 
 
 
-class proje(models.Model):
+class proje(models.Model):  #projeler için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="TÜBİTAK Projesi",blank=False, null=True)
@@ -73,7 +73,7 @@ class proje(models.Model):
 
 
 
-class faliyet(models.Model):
+class faliyet(models.Model):  #faliyetler için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Baş Editör",blank=False, null=True)
@@ -88,7 +88,7 @@ class faliyet(models.Model):
 
 
 
-class etkinlik(models.Model):
+class etkinlik(models.Model):  #etkinlikler için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Kongre Sempozyumu",blank=False, null=True)
@@ -102,7 +102,7 @@ class etkinlik(models.Model):
         return year
 
 
-class atıf(models.Model):
+class atıf(models.Model):  #atıflar için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="ISI Dergilerindeki Atıflar",blank=False, null=True)
@@ -117,7 +117,7 @@ class atıf(models.Model):
 
 
 
-class patent(models.Model):
+class patent(models.Model):  #patentler için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Patent", blank=False, null=True)
@@ -132,7 +132,7 @@ class patent(models.Model):
 
 
 
-class ödül(models.Model):
+class ödül(models.Model):  #ödüller için veri tabanı oluşturuldu
     akademisyen = models.ForeignKey(NewUserModel,on_delete=models.CASCADE)
     tarih = models.CharField(max_length=10,db_column='Tarih',verbose_name="Tarih",default=date.today,blank=False, null=True)
     tür = models.CharField(max_length=100,db_column='TÜR',verbose_name="Tür",default="Proje ödülü",blank=False, null=True)
